@@ -4,11 +4,15 @@ var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
     'itant eate anot eat nato inate eat anot tain eat',
     'nee ene ate ite tent tiet ent ine ene ete ene ate'];
 
-
+var indexSenteceActive = 0;
+var senteceActive = sentences[indexSenteceActive];
 
 $(document).ready(function () {
-    $("#block").text(sentences[0]);
+    $("#block").text(senteceActive);
 });
+
+var length = 0;
+var lengthSentence = senteceActive.length;
 
 
 $(document).bind('keydown', function (event) {
@@ -31,6 +35,7 @@ $(document).bind('keydown', function (event) {
         }
 
     }
+
     switch (event.keyCode) {
         case 192:
             $('span#126').addClass('active-style');
@@ -225,6 +230,7 @@ $(document).bind('keydown', function (event) {
             break;
 
     }
+    
 
 });
 
@@ -232,7 +238,17 @@ $(document).bind('keyup', function (event) {
 
     //If you want to check the code from the key
     console.log(event.keyCode);
-    var keyup = event.keyCode;
+    var actualSentences = $("#block").text();
+    var letter = actualSentences.charAt(length);
+ 
+    length++;
+    if(length===lengthSentence){
+       indexSenteceActive++;
+       senteceActive = sentences[indexSenteceActive];
+       $("#block").text(senteceActive);
+       length=0;
+       lengthSentence=senteceActive.length;
+    }
     switch (event.keyCode) {
         case 192:
             $('span#126').removeClass('active-style');
@@ -425,6 +441,15 @@ $(document).bind('keyup', function (event) {
         case 32:
             $('div#32').removeClass('active-style');
             break;
+    }
+    
+    var letterPress = String.fromCharCode(event.keyCode);
+    if(letter.toLowerCase()===letterPress.toLowerCase()){
+        console.log('ok');
+        $("#words-typed").text='ok';
+    }else{
+        console.log('no ok');
+        $("#words-typed").text='no ok';
     }
 
 });
