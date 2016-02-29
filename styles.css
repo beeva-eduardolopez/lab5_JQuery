@@ -59,6 +59,12 @@ span:active {
      background:#0026ff;
 }
 
-.words-typed{
-    
+.check-ok{
+    width: 30px;
+    height: 30px;
+}
+
+.check-no-ok{
+    width: 20px;
+    height: 20px;
 }
