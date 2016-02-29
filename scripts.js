@@ -8,8 +8,8 @@
 
 var startTime = new Date();
 var endGame = false;
-var indexSenteceActive = 0;
-var senteceActive = sentences[indexSenteceActive];
+var indexSentenceActive = 0;
+var senteceActive = sentences[indexSentenceActive];
 var words = 0;
 var lettersOk = 0;
 var lettersNoOk = 0;
@@ -252,11 +252,11 @@ $(document).bind('keyup', function (event) {
      $("#words-typed").text(nextLetter);
     length++;
     if(length===lengthSentence){
-       indexSenteceActive++;
-       if(indexSenteceActive===sentences.length){
+       indexSentenceActive++;
+       if(indexSentenceActive===sentences.length){
            endGame = true;
        }
-       senteceActive = sentences[indexSenteceActive];
+       senteceActive = sentences[indexSentenceActive];
        $("#block").text(senteceActive);
        length=0;
        lengthSentence=senteceActive.length-1;
@@ -471,9 +471,14 @@ $(document).bind('keyup', function (event) {
         var endTime = new Date();
         var diff = endTime - startTime;
         var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
-        var wordsPerMinute = words/diffMins;
-        wordsPerMinute = wordsPerMinute-lettersNoOk;
-        alert('Words per minute: '+wordsPerMinute);
-        document.location.reload();
+        var wordsPerMinute = 0;
+        if(words!==0){ 
+            wordsPerMinute = words/diffMins;
+            wordsPerMinute = wordsPerMinute-lettersNoOk;
+        }
+        var answer = confirm('Words per minute: '+wordsPerMinute+ '\nDo you want play again?');
+        if (answer){
+          location.reload();
+        }
     }
 });
