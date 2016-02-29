@@ -16,7 +16,7 @@ $(document).bind('keydown', function (event) {
     //If you want to check the code from the key
     console.log(event.keyCode);
     var keydown = event.keyCode;
-    if (keydown == 20) {
+    if (keydown == 16) {
         console.log("CHANGE KEYBOARD");
         if ($("#keyboard-upper-container").attr("class") == 'text-center keyboard-container active') {
             $("#keyboard-upper-container").removeClass("active");
