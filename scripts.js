@@ -6,13 +6,13 @@ var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
 
 var indexSenteceActive = 0;
 var senteceActive = sentences[indexSenteceActive];
-
+var words = 0;
 $(document).ready(function () {
     $("#block").text(senteceActive);
 });
 
 var length = 0;
-var lengthSentence = senteceActive.length;
+var lengthSentence = senteceActive.length-1;
 
 
 $(document).bind('keydown', function (event) {
@@ -247,7 +247,7 @@ $(document).bind('keyup', function (event) {
        senteceActive = sentences[indexSenteceActive];
        $("#block").text(senteceActive);
        length=0;
-       lengthSentence=senteceActive.length;
+       lengthSentence=senteceActive.length-1;
     }
     switch (event.keyCode) {
         case 192:
@@ -445,11 +445,14 @@ $(document).bind('keyup', function (event) {
     
     var letterPress = String.fromCharCode(event.keyCode);
     if(letter.toLowerCase()===letterPress.toLowerCase()){
+        if(letter==" "){
+            words++;
+        }
         console.log('ok');
-        $("#words-typed").text='ok';
+        $("#words-typed").text('ok');
     }else{
         console.log('no ok');
-        $("#words-typed").text='no ok';
+        $("#words-typed").text('no ok');
     }
 
 });
