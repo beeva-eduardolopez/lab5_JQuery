@@ -1,12 +1,18 @@
-var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
+/*var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
     'Too ato too nOt enot one totA not anot tOO aNot',
     'oat itain oat tain nate eate tea anne inant nean',
     'itant eate anot eat nato inate eat anot tain eat',
-    'nee ene ate ite tent tiet ent ine ene ete ene ate'];
+    'nee ene ate ite tent tiet ent ine ene ete ene ate'];*/
+ var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
+    'Too ato too nOt enot one totA not anot tOO aNot'];
 
+var startTime = new Date();
+var endGame = false;
 var indexSenteceActive = 0;
 var senteceActive = sentences[indexSenteceActive];
 var words = 0;
+var lettersOk = 0;
+var lettersNoOk = 0;
 $(document).ready(function () {
     $("#block").text(senteceActive);
     var firstLetter = senteceActive.charAt(0);
@@ -238,7 +244,7 @@ $(document).bind('keydown', function (event) {
 
 $(document).bind('keyup', function (event) {
 
-    //If you want to check the code from the key
+   
     console.log(event.keyCode);
     var actualSentences = $("#block").text();
     var letter = actualSentences.charAt(length);
@@ -247,6 +253,9 @@ $(document).bind('keyup', function (event) {
     length++;
     if(length===lengthSentence){
        indexSenteceActive++;
+       if(indexSenteceActive===sentences.length){
+           endGame = true;
+       }
        senteceActive = sentences[indexSenteceActive];
        $("#block").text(senteceActive);
        length=0;
@@ -451,9 +460,20 @@ $(document).bind('keyup', function (event) {
         if(letter==" "){
             words++;
         }
+        lettersOk++;
         console.log('ok');
     }else{
+        lettersNoOk++;
         console.log('no ok');
     }
 
+    if(endGame){
+        var endTime = new Date();
+        var diff = endTime - startTime;
+        var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+        var wordsPerMinute = words/diffMins;
+        wordsPerMinute = wordsPerMinute-lettersNoOk;
+        alert('Words per minute: '+wordsPerMinute);
+        document.location.reload();
+    }
 });
