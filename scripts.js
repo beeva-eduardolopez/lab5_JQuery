@@ -9,6 +9,8 @@ var senteceActive = sentences[indexSenteceActive];
 var words = 0;
 $(document).ready(function () {
     $("#block").text(senteceActive);
+    var firstLetter = senteceActive.charAt(0);
+    $("#words-typed").text(firstLetter);
 });
 
 var length = 0;
@@ -240,7 +242,8 @@ $(document).bind('keyup', function (event) {
     console.log(event.keyCode);
     var actualSentences = $("#block").text();
     var letter = actualSentences.charAt(length);
- 
+    var nextLetter = actualSentences.charAt(length+1);
+     $("#words-typed").text(nextLetter);
     length++;
     if(length===lengthSentence){
        indexSenteceActive++;
@@ -449,10 +452,8 @@ $(document).bind('keyup', function (event) {
             words++;
         }
         console.log('ok');
-        $("#words-typed").text('ok');
     }else{
         console.log('no ok');
-        $("#words-typed").text('no ok');
     }
 
 });
