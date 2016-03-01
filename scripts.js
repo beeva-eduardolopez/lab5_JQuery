@@ -460,9 +460,11 @@ $(document).bind('keyup', function (event) {
         if(letter==" "){
             words++;
         }
+        $("#next-letter").append("<div id='theImg' class='glyphicon-ok' />");
         lettersOk++;
         console.log('ok');
     }else{
+       $("#next-letter").append("<div id='theImg' class='.glyphicon-remove' />");
         lettersNoOk++;
         console.log('no ok');
     }
