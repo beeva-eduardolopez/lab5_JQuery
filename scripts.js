@@ -1,10 +1,10 @@
-/*var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
+var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
     'Too ato too nOt enot one totA not anot tOO aNot',
     'oat itain oat tain nate eate tea anne inant nean',
     'itant eate anot eat nato inate eat anot tain eat',
-    'nee ene ate ite tent tiet ent ine ene ete ene ate'];*/
- var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
-    'Too ato too nOt enot one totA not anot tOO aNot'];
+    'nee ene ate ite tent tiet ent ine ene ete ene ate'];
+ /*var sentences = ['ten ate neite ate nee enet ite ate inet ent eate',
+    'Too ato too nOt enot one totA not anot tOO aNot'];*/
 
 var startTime = new Date();
 var endGame = false;
@@ -13,6 +13,7 @@ var senteceActive = sentences[indexSentenceActive];
 var words = 0;
 var lettersOk = 0;
 var lettersNoOk = 0;
+var emptyChecks = false;
 $(document).ready(function () {
     $("#block").text(senteceActive);
     var firstLetter = senteceActive.charAt(0);
@@ -252,6 +253,7 @@ $(document).bind('keyup', function (event) {
      $("#words-typed").text(nextLetter);
     length++;
     if(length===lengthSentence){
+        emptyChecks=true;
        indexSentenceActive++;
        if(indexSentenceActive===sentences.length){
            endGame = true;
@@ -468,7 +470,10 @@ $(document).bind('keyup', function (event) {
         $('#next-letter').prepend('<img class="check-no-ok"  id="theImgNoOk" src="checknook.png" />')
         console.log('no ok');
     }
-
+    if(emptyChecks){
+        $('#next-letter').empty();
+    }
+    emptyChecks= false;
     if(endGame){
         var endTime = new Date();
         var diff = endTime - startTime;
