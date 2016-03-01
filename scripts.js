@@ -463,11 +463,11 @@ $(document).bind('keyup', function (event) {
             words++;
         }
         lettersOk++;
-        $('#next-letter').prepend('<img class="check-ok" id="theImgOk" src="ckeckok.png" />')
+        $('#next-letter').append('<img class="check-ok" id="theImgOk" src="ckeckok.png" />')
         console.log('ok');
     }else{
         lettersNoOk++;
-        $('#next-letter').prepend('<img class="check-no-ok"  id="theImgNoOk" src="checknook.png" />')
+        $('#next-letter').append('<img class="check-no-ok"  id="theImgNoOk" src="checknook.png" />')
         console.log('no ok');
     }
     if(emptyChecks){
