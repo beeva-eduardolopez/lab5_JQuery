@@ -62,9 +62,13 @@ span:active {
 .check-ok{
     width: 30px;
     height: 30px;
+    display: inline-block;
+   text-align: left; 
 }
 
 .check-no-ok{
     width: 20px;
     height: 20px;
+    display: inline-block;
+     text-align: left; 
 }
