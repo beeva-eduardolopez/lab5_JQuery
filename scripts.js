@@ -462,10 +462,12 @@ $(document).bind('keyup', function (event) {
         }
         $("#next-letter").append("<div id='theImg' class='glyphicon-ok' />");
         lettersOk++;
+        $('#next-letter').prepend('<img class="check-ok" id="theImgOk" src="ckeckok.png" />')
         console.log('ok');
     }else{
        $("#next-letter").append("<div id='theImg' class='.glyphicon-remove' />");
         lettersNoOk++;
+        $('#next-letter').prepend('<img class="check-no-ok"  id="theImgNoOk" src="checknook.png" />')
         console.log('no ok');
     }
 
